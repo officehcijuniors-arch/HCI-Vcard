@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Team Landing</title>
+<title>Nachwuchs – Vereinsstruktur</title>
 
 <style>
 @font-face {
@@ -15,9 +15,9 @@
 :root {
   --blue: #003789;
   --red: #d42323;
-  --bg: #ffffff;
   --text: #0b0f19;
   --muted: rgba(0,0,0,0.6);
+  --bg: #ffffff;
 }
 
 * {
@@ -37,17 +37,17 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 18px 40px;
+  padding: 16px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: rgba(255,255,255,0.75);
   backdrop-filter: blur(14px);
-  background: rgba(255,255,255,0.7);
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
-nav .logo-small {
-  height: 32px;
+nav img {
+  height: 34px;
 }
 
 /* HERO */
@@ -65,15 +65,15 @@ nav .logo-small {
 }
 
 .hero img {
-  width: 140px;
+  width: 150px;
   margin-bottom: 30px;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
 }
 
 h1 {
-  font-size: 64px;
+  font-size: 60px;
   letter-spacing: -1px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 p {
@@ -82,22 +82,20 @@ p {
   line-height: 1.6;
 }
 
-/* BUTTON */
+/* CTA */
 .cta {
-  margin-top: 40px;
+  margin-top: 35px;
   display: inline-block;
-  padding: 14px 26px;
+  padding: 14px 28px;
   border-radius: 999px;
-  text-decoration: none;
-  font-size: 16px;
-  color: white;
   background: linear-gradient(135deg, var(--blue), var(--red));
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
 
 .cta:hover {
   transform: scale(1.05);
-  opacity: 0.9;
 }
 
 /* SECTION */
@@ -109,10 +107,42 @@ p {
 
 .section h2 {
   font-size: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
-/* CARDS */
+.lead {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 850px;
+  margin-bottom: 50px;
+  line-height: 1.6;
+}
+
+/* STRATEGY */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.block {
+  padding: 26px;
+  border-left: 5px solid var(--blue);
+  background: #fafafa;
+  border-radius: 14px;
+}
+
+.block h3 {
+  margin-bottom: 10px;
+}
+
+.block p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* TEAM */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -120,11 +150,13 @@ p {
 }
 
 .card {
-  padding: 24px;
+  padding: 26px;
   border-radius: 18px;
-  background: #fff;
   border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .card:hover {
@@ -133,7 +165,7 @@ p {
 }
 
 .card h3 {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .role {
@@ -154,38 +186,76 @@ footer {
 <body>
 
 <nav>
-  <img src="HAI.png" class="logo-small" alt="Logo">
-  <div style="font-size:14px; color:rgba(0,0,0,0.6);">Team Overview</div>
+  <img src="HAI.png" alt="Vereinslogo">
+  <div style="font-size:14px;color:rgba(0,0,0,0.6);">
+    Nachwuchsorganisation
+  </div>
 </nav>
 
 <div class="hero">
   <div class="hero-inner">
     <img src="HAI.png" alt="Logo">
-    <h1>Ein Team. Eine Vision.</h1>
+    <h1>Nachwuchs mit Struktur.</h1>
     <p>
-      Klar strukturiert, modern organisiert und mit Fokus auf Finanzen,
-      TeamWear+ und Zusammenarbeit.
+      Der Nachwuchsbereich unseres Eishockeyclubs steht für klare Organisation,
+      nachhaltige Entwicklung und gezielte Förderung junger Spielerinnen und Spieler.
     </p>
 
-    <a class="cta" href="#team">Team entdecken</a>
+    <a class="cta" href="#struktur">Struktur ansehen</a>
   </div>
 </div>
 
+<section class="section" id="struktur">
+  <h2>Vereinsstruktur</h2>
+  <p class="lead">
+    Eine klare Organisation bildet die Grundlage für sportliche und
+    administrative Entwicklung im Nachwuchsbereich.
+  </p>
+
+  <div class="grid-3">
+
+    <div class="block">
+      <h3>Organisation</h3>
+      <p>
+        Strukturierte Abläufe und definierte Verantwortlichkeiten im gesamten Nachwuchsbereich.
+      </p>
+    </div>
+
+    <div class="block">
+      <h3>Finanzen</h3>
+      <p>
+        Transparente Finanzverwaltung zur Sicherstellung eines stabilen und nachhaltigen Vereinsbetriebs.
+      </p>
+    </div>
+
+    <div class="block">
+      <h3>Ausrüstung & Teamwear</h3>
+      <p>
+        Einheitliches Auftreten und professionelle Ausstattung aller Nachwuchsteams.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <section class="section" id="team">
-  <h2>Team</h2>
+  <h2>Verantwortlichkeiten</h2>
+  <p class="lead">
+    Zuständigkeiten innerhalb der Nachwuchsorganisation.
+  </p>
 
   <div class="grid">
 
-    <a class="card" href="Singer Mirjam/" style="text-decoration:none; color:inherit;">
+    <a class="card" href="Singer Mirjam/">
       <h3>Mirjam Singer</h3>
-      <div class="role">Finanzen & TeamWear+</div>
+      <div class="role">Finanzen & Ausrüstung</div>
     </a>
 
   </div>
 </section>
 
 <footer>
-  © 2026 Team • Designed minimal & modern
+  © Nachwuchs Eishockeyclub • Entwicklung durch Struktur & Teamgeist
 </footer>
 
 </body>
