@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mirjam Singer – Kontakt</title>
+<title>Kontakt – HC TIWAG Innsbruck</title>
 <style>
   :root{
     --ink:#1a2b5c;
@@ -69,12 +69,14 @@
     margin:0 auto 16px;
     display:block;
     border:2px solid var(--ink);
+    background:#eee;
   }
   h1{
     font-size:1.4rem;
     font-weight:400;
     letter-spacing:0.02em;
     color:var(--ink);
+    min-height:1.6em;
   }
   .role{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -84,6 +86,7 @@
     color:var(--accent);
     margin-top:6px;
     font-weight:600;
+    min-height:1.2em;
   }
   .details{
     padding:24px 28px;
@@ -94,6 +97,7 @@
   }
   .details a{ color:var(--ink); text-decoration:none; }
   .details span{ color:var(--ink); font-weight:600; }
+  .details div:empty{ display:none; }
   .qr-wrap{
     padding:28px;
     text-align:center;
@@ -138,15 +142,18 @@
 <div class="card">
   <div class="header">
     <img class="logo" src="../HAI.png" alt="HC TIWAG Innsbruck Logo">
-    <img class="photo" src="Singer%20Mirjam.png" alt="Mirjam Singer">
-    <h1>Mirjam Singer</h1>
-    <div class="role">Finanzen &amp; Teamausstattung</div>
+    <img class="photo" id="photo" src="" alt="Profilfoto">
+    <h1 id="name"></h1>
+    <div class="role" id="role"></div>
   </div>
 
   <div class="details">
-    <div>HC TIWAG Innsbruck</div>
-    <div><span>Tel:</span> <a href="tel:+436769411816">+43 676 9411816</a></div>
-    <div><span>E-Mail:</span> <a href="mailto:mirjam.singer@hcinnsbruck.at">mirjam.singer@hcinnsbruck.at</a></div>
+    <div id="org"></div>
+    <div id="tel-cell"></div>
+    <div id="tel-work"></div>
+    <div id="email"></div>
+    <div id="email-work"></div>
+    <div id="adr"></div>
   </div>
 
   <div class="qr-wrap">
@@ -158,7 +165,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-  // QR-Code zeigt auf DIESE Seite (ohne Logo-Overlay).
+  // QR-Code zeigt auf DIESE Seite.
   new QRCode(document.getElementById("qrcode"), {
     text: window.location.href,
     width: 180,
@@ -167,6 +174,74 @@
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.M
   });
+
+  // vCard laden und parsen
+  fetch('Vcard.vcf')
+    .then(r => r.text())
+    .then(text => {
+      const lines = text.split(/\r\n|\n|\r/);
+      // Unfolding: Zeilen, die mit Leerzeichen/Tab beginnen, gehören zur vorherigen Zeile
+      const unfolded = [];
+      for (const line of lines) {
+        if ((line.startsWith(' ') || line.startsWith('\t')) && unfolded.length) {
+          unfolded[unfolded.length - 1] += line.slice(1);
+        } else {
+          unfolded.push(line);
+        }
+      }
+
+      const data = {};
+      for (const line of unfolded) {
+        const idx = line.indexOf(':');
+        if (idx === -1) continue;
+        const keyPart = line.slice(0, idx);
+        const value = line.slice(idx + 1);
+        const [key, ...params] = keyPart.split(';');
+        const k = key.toUpperCase();
+        const type = (params.find(p => p.toUpperCase().startsWith('TYPE=')) || '').split('=')[1] || '';
+
+        if (k === 'FN') data.fn = value;
+        else if (k === 'TITLE') data.title = value;
+        else if (k === 'ORG') data.org = value;
+        else if (k === 'TEL') {
+          if (type.toUpperCase() === 'WORK') data.telWork = value;
+          else data.telCell = value;
+        }
+        else if (k === 'EMAIL') {
+          if (type.toUpperCase() === 'WORK') data.emailWork = value;
+          else data.email = value;
+        }
+        else if (k === 'ADR') {
+          const parts = value.split(';');
+          data.adr = parts.filter(Boolean).join(', ');
+        }
+        else if (k === 'PHOTO') {
+          let photoType = (params.find(p => p.toUpperCase().startsWith('TYPE=')) || '').split('=')[1] || 'JPEG';
+          data.photo = `data:image/${photoType.toLowerCase()};base64,${value}`;
+        }
+      }
+
+      if (data.fn) document.getElementById('name').textContent = data.fn;
+      if (data.title) document.getElementById('role').textContent = data.title;
+      if (data.org) document.getElementById('org').textContent = data.org;
+      if (data.telCell) document.getElementById('tel-cell').innerHTML =
+        `<span>Tel:</span> <a href="tel:${data.telCell}">${formatPhone(data.telCell)}</a>`;
+      if (data.telWork) document.getElementById('tel-work').innerHTML =
+        `<span>Büro:</span> <a href="tel:${data.telWork}">${formatPhone(data.telWork)}</a>`;
+      if (data.email) document.getElementById('email').innerHTML =
+        `<span>E-Mail:</span> <a href="mailto:${data.email}">${data.email}</a>`;
+      if (data.emailWork) document.getElementById('email-work').innerHTML =
+        `<span>Office:</span> <a href="mailto:${data.emailWork}">${data.emailWork}</a>`;
+      if (data.adr) document.getElementById('adr').innerHTML =
+        `<span>Adresse:</span> ${data.adr}`;
+      if (data.photo) document.getElementById('photo').src = data.photo;
+    })
+    .catch(err => console.error('Vcard.vcf konnte nicht geladen werden:', err));
+
+  function formatPhone(tel) {
+    // +436769411816 -> +43 676 9411816 (einfache Lesbarkeit, optional)
+    return tel;
+  }
 </script>
 
 </body>
