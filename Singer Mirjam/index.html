@@ -6,9 +6,9 @@
 <title>Mirjam Singer – Kontakt</title>
 <style>
   :root{
-    --ink:#1a2b3c;
+    --ink:#1a2b5c;
     --paper:#f7f5f0;
-    --accent:#c5621d;
+    --accent:#c8102e;
     --line:#d8d3c7;
     --muted:#6b7280;
   }
@@ -49,16 +49,17 @@
     overflow:hidden;
     position:relative;
     z-index:1;
+    box-shadow:0 4px 24px rgba(26,43,92,0.08);
   }
   .header{
     padding:32px 28px 24px;
-    border-bottom:1px solid var(--line);
+    border-bottom:3px solid var(--accent);
     text-align:center;
   }
   .logo{
-    height:36px;
+    height:64px;
     margin-bottom:20px;
-    opacity:0.85;
+    opacity:0.95;
   }
   .photo{
     width:96px;
@@ -67,12 +68,13 @@
     object-fit:cover;
     margin:0 auto 16px;
     display:block;
-    border:1px solid var(--line);
+    border:2px solid var(--ink);
   }
   h1{
     font-size:1.4rem;
     font-weight:400;
     letter-spacing:0.02em;
+    color:var(--ink);
   }
   .role{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -81,6 +83,7 @@
     letter-spacing:0.12em;
     color:var(--accent);
     margin-top:6px;
+    font-weight:600;
   }
   .details{
     padding:24px 28px;
@@ -90,7 +93,7 @@
     color:var(--muted);
   }
   .details a{ color:var(--ink); text-decoration:none; }
-  .details span{ color:var(--ink); }
+  .details span{ color:var(--ink); font-weight:600; }
   .qr-wrap{
     padding:28px;
     text-align:center;
@@ -103,6 +106,7 @@
     color:var(--muted);
     margin-bottom:14px;
     letter-spacing:0.04em;
+    text-transform:uppercase;
   }
   #qrcode{
     display:inline-block;
@@ -124,6 +128,7 @@
     letter-spacing:0.04em;
     text-decoration:none;
     cursor:pointer;
+    transition:background 0.2s;
   }
   .save-btn:active{ background:var(--accent); }
 </style>
@@ -132,22 +137,22 @@
 
 <div class="card">
   <div class="header">
-    <img class="logo" src="../HAI.png" alt="Firmenlogo">
+    <img class="logo" src="../HAI.png" alt="HC TIWAG Innsbruck Logo">
     <img class="photo" src="Singer%20Mirjam.png" alt="Mirjam Singer">
     <h1>Mirjam Singer</h1>
-    <div class="role">Finanzen und TeamWear+</div>
+    <div class="role">Finanzen &amp; Teamausstattung</div>
   </div>
 
   <div class="details">
-    <div>HCI</div>
+    <div>HC TIWAG Innsbruck</div>
     <div><span>Tel:</span> <a href="tel:+436769411816">+43 676 9411816</a></div>
     <div><span>E-Mail:</span> <a href="mailto:mirjam.singer@hcinnsbruck.at">mirjam.singer@hcinnsbruck.at</a></div>
   </div>
 
   <div class="qr-wrap">
-    <p>QR-CODE ZUM ABSCANNEN</p>
+    <p>QR-Code zum Abscannen</p>
     <div id="qrcode"></div>
-    <a class="save-btn" href="Singer%20Mirjam.vcf" download>Kontakt speichern</a>
+    <a class="save-btn" href="Vcard.vcf" download>Kontakt speichern</a>
   </div>
 </div>
 
@@ -158,7 +163,7 @@
     text: window.location.href,
     width: 180,
     height: 180,
-    colorDark: "#1a2b3c",
+    colorDark: "#1a2b5c",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.M
   });
