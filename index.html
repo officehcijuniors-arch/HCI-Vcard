@@ -152,32 +152,17 @@
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qr-code-styling/1.6.0-rc.1/qr-code-styling.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-  // QR-Code zeigt auf DIESE Seite, mit Firmenlogo in der Mitte.
-  const qrCode = new QRCodeStyling({
+  // QR-Code zeigt auf DIESE Seite (ohne Logo-Overlay).
+  new QRCode(document.getElementById("qrcode"), {
+    text: window.location.href,
     width: 180,
     height: 180,
-    type: "svg",
-    data: window.location.href,
-    image: "HAI.png",
-    dotsOptions: {
-      color: "#1a2b3c",
-      type: "rounded"
-    },
-    backgroundOptions: {
-      color: "#ffffff",
-    },
-    imageOptions: {
-      crossOrigin: "anonymous",
-      margin: 6,
-      imageSize: 0.35
-    },
-    qrOptions: {
-      errorCorrectionLevel: "H" // wichtig: hohe Fehlerkorrektur wegen Logo
-    }
+    colorDark: "#1a2b3c",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
   });
-  qrCode.append(document.getElementById("qrcode"));
 </script>
 
 </body>
