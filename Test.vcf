@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Max Mustermann
+N:Mustermann;Max;;;
+ORG:Firma GmbH
+TITLE:Vertrieb & Beratung
+TEL;TYPE=CELL:+43123456789
+EMAIL:max@firma.at
+URL:https://www.firma.at
+END:VCARD
