@@ -142,7 +142,7 @@
 <div class="card">
   <div class="header">
     <img class="logo" src="../HAI.png" alt="HC TIWAG Innsbruck Logo">
-    <img class="photo" id="photo" src="" alt="Profilfoto">
+    <img class="photo" id="photo" src="Profilbild.png" alt="Profilfoto">
     <h1 id="name"></h1>
     <div class="role" id="role"></div>
   </div>
@@ -234,7 +234,6 @@
         `<span>Office:</span> <a href="mailto:${data.emailWork}">${data.emailWork}</a>`;
       if (data.adr) document.getElementById('adr').innerHTML =
         `<span>Adresse:</span> ${data.adr}`;
-      if (data.photo) document.getElementById('photo').src = data.photo;
     })
     .catch(err => console.error('Vcard.vcf konnte nicht geladen werden:', err));
 
