@@ -1,8 +1,184 @@
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.25%;
-    overflow: hidden; border-radius: 8px;">
-  <iframe loading="lazy"
-    style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none;"
-    src="https://www.canva.com/design/DAGyZLbH_UY/rDtybyjcnlHFOmw0pEoPOA/view?embed"
-    allowfullscreen>
-  </iframe>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Max Mustermann – Kontakt</title>
+<style>
+  :root{
+    --ink:#1a2b3c;
+    --paper:#f7f5f0;
+    --accent:#c5621d;
+    --line:#d8d3c7;
+    --muted:#6b7280;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:24px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:33vh;
+    background-image:url('assets/HAI.png');
+    background-repeat:no-repeat;
+    background-position:center 40px;
+    background-size:220px auto;
+    opacity:0.07;
+    pointer-events:none;
+    z-index:0;
+  }
+  .card{
+    width:100%;
+    max-width:380px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    position:relative;
+    z-index:1;
+  }
+  .header{
+    padding:32px 28px 24px;
+    border-bottom:1px solid var(--line);
+    text-align:center;
+  }
+  .logo{
+    height:36px;
+    margin-bottom:20px;
+    opacity:0.85;
+  }
+  .photo{
+    width:96px;
+    height:96px;
+    border-radius:50%;
+    object-fit:cover;
+    margin:0 auto 16px;
+    display:block;
+    border:1px solid var(--line);
+  }
+  h1{
+    font-size:1.4rem;
+    font-weight:400;
+    letter-spacing:0.02em;
+  }
+  .role{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--accent);
+    margin-top:6px;
+  }
+  .details{
+    padding:24px 28px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.92rem;
+    line-height:1.9;
+    color:var(--muted);
+  }
+  .details a{ color:var(--ink); text-decoration:none; }
+  .details span{ color:var(--ink); }
+  .qr-wrap{
+    padding:28px;
+    text-align:center;
+    border-top:1px solid var(--line);
+    background:#fbfaf7;
+  }
+  .qr-wrap p{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-bottom:14px;
+    letter-spacing:0.04em;
+  }
+  #qrcode{
+    display:inline-block;
+    line-height:0;
+    border:8px solid #fff;
+    box-shadow:0 0 0 1px var(--line);
+  }
+  .save-btn{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin-top:20px;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.9rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    cursor:pointer;
+  }
+  .save-btn:active{ background:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <img class="logo" src="assets/HAI.png" alt="Firmenlogo">
+    <img class="photo" src="assets/fotos/TIWAG.png" alt="Max Mustermann">
+    <h1>Max Mustermann</h1>
+    <div class="role">Vertrieb &amp; Beratung</div>
+  </div>
+
+  <div class="details">
+    <div>Firma GmbH</div>
+    <div><span>Tel:</span> <a href="tel:+43123456789">+43 123 456 789</a></div>
+    <div><span>E-Mail:</span> <a href="mailto:max@firma.at">max@firma.at</a></div>
+    <div><span>Web:</span> <a href="https://www.firma.at">www.firma.at</a></div>
+  </div>
+
+  <div class="qr-wrap">
+    <p>QR-CODE ZUM ABSCANNEN</p>
+    <div id="qrcode"></div>
+    <a class="save-btn" href="kontakt.vcf" download>Kontakt speichern</a>
+  </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qr-code-styling/1.6.0-rc.1/qr-code-styling.js"></script>
+<script>
+  // QR-Code zeigt auf DIESE Seite, mit Firmenlogo in der Mitte.
+  const qrCode = new QRCodeStyling({
+    width: 180,
+    height: 180,
+    type: "svg",
+    data: window.location.href,
+    image: "assets/HAI.png",
+    dotsOptions: {
+      color: "#1a2b3c",
+      type: "rounded"
+    },
+    backgroundOptions: {
+      color: "#ffffff",
+    },
+    imageOptions: {
+      crossOrigin: "anonymous",
+      margin: 6,
+      imageSize: 0.35
+    },
+    qrOptions: {
+      errorCorrectionLevel: "H" // wichtig: hohe Fehlerkorrektur wegen Logo
+    }
+  });
+  qrCode.append(document.getElementById("qrcode"));
+</script>
+
+</body>
+</html>
