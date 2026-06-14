@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kurt Mitterer – Kontakt</title>
+<link rel="icon" type="image/png" href="../HAI.png">
+<link rel="apple-touch-icon" href="../HAI.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Visitenkarte">
+<meta name="theme-color" content="#1a2b5c">
+<style>
+  :root{
+    --ink:#003789;
+    --paper:#f7f5f0;
+    --accent:#d42323;
+    --line:#d8d3c7;
+    --muted:#6b7280;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:24px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:33vh;
+    background-image:url('../HAI.png');
+    background-repeat:no-repeat;
+    background-position:center 40px;
+    background-size:220px auto;
+    opacity:0.07;
+    pointer-events:none;
+    z-index:0;
+  }
+  .card{
+    width:100%; max-width:380px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    position:relative;
+    z-index:1;
+    box-shadow:0 4px 24px rgba(0,55,137,0.08);
+  }
+  .header{
+    padding:32px 28px 24px;
+    border-bottom:3px solid var(--accent);
+    text-align:center;
+  }
+  .logo{ height:64px; margin-bottom:20px; opacity:0.95; }
+  .photo{
+    width:96px; height:96px;
+    border-radius:50%; object-fit:cover;
+    margin:0 auto 16px; display:block;
+    border:2px solid var(--ink);
+  }
+  h1{ font-size:1.4rem; font-weight:400; letter-spacing:0.02em; color:var(--ink); }
+  .role{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.78rem; text-transform:uppercase;
+    letter-spacing:0.12em; color:var(--accent);
+    margin-top:6px; font-weight:600;
+  }
+  .details{
+    padding:24px 28px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.92rem; line-height:1.9; color:var(--muted);
+  }
+  .details a{ color:var(--ink); text-decoration:none; }
+  .details span{ color:var(--ink); font-weight:600; }
+  .details div:empty{ display:none; }
+  .qr-wrap{
+    padding:28px; text-align:center;
+    border-top:1px solid var(--line);
+    background:#fbfaf7;
+  }
+  .qr-wrap p{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.78rem; color:var(--muted);
+    margin-bottom:14px; letter-spacing:0.04em; text-transform:uppercase;
+  }
+  #qrcode{ display:inline-block; line-height:0; border:8px solid #fff; box-shadow:0 0 0 1px var(--line); }
+  .save-btn{
+    display:block; width:100%; padding:14px; margin-top:20px;
+    background:var(--ink); color:#fff; border:none; border-radius:4px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:0.9rem; letter-spacing:0.04em; text-decoration:none; cursor:pointer;
+    transition:background 0.2s;
+  }
+  .save-btn:active{ background:var(--accent); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <img class="logo" src="../HAI.png" alt="HC TIWAG Innsbruck Logo">
+    <img class="photo" src="Profilbild.png" alt="Kurt Mitterer">
+    <h1 id="name"></h1>
+    <div class="role" id="role"></div>
+  </div>
+  <div class="details">
+    <div id="org"></div>
+    <div id="tel-cell"></div>
+    <div id="tel-work"></div>
+    <div id="email"></div>
+    <div id="email-work"></div>
+    <div id="adr"></div>
+  </div>
+  <div class="qr-wrap">
+    <p>QR-Code zum Abscannen</p>
+    <div id="qrcode"></div>
+    <a class="save-btn" href="Vcard.vcf" download>Kontakt speichern</a>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: window.location.href,
+    width: 180, height: 180,
+    colorDark: "#003789", colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  fetch('Vcard.vcf').then(r => r.text()).then(text => {
+    const lines = text.split(/\r\n|\n|\r/);
+    const unfolded = [];
+    for (const line of lines) {
+      if ((line.startsWith(' ') || line.startsWith('\t')) && unfolded.length)
+        unfolded[unfolded.length-1] += line.slice(1);
+      else unfolded.push(line);
+    }
+    const data = {};
+    for (const line of unfolded) {
+      const idx = line.indexOf(':');
+      if (idx === -1) continue;
+      const keyPart = line.slice(0,idx), value = line.slice(idx+1);
+      const [key, ...params] = keyPart.split(';');
+      const k = key.toUpperCase();
+      const type = (params.find(p => p.toUpperCase().startsWith('TYPE=')) || '').split('=')[1] || '';
+      if (k==='FN') data.fn=value;
+      else if (k==='TITLE') data.title=value;
+      else if (k==='ORG') data.org=value;
+      else if (k==='TEL') { if (type.toUpperCase()==='WORK') data.telWork=value; else data.telCell=value; }
+      else if (k==='EMAIL') { if (type.toUpperCase()==='WORK') data.emailWork=value; else data.email=value; }
+      else if (k==='ADR') { data.adr = value.split(';').filter(Boolean).join(', '); }
+    }
+    if (data.fn) document.getElementById('name').textContent = data.fn;
+    if (data.title) document.getElementById('role').textContent = data.title;
+    if (data.org) document.getElementById('org').textContent = data.org;
+    if (data.telCell) document.getElementById('tel-cell').innerHTML = `<span>Tel:</span> <a href="tel:${data.telCell}">${data.telCell}</a>`;
+    if (data.telWork) document.getElementById('tel-work').innerHTML = `<span>Büro:</span> <a href="tel:${data.telWork}">${data.telWork}</a>`;
+    if (data.email) document.getElementById('email').innerHTML = `<span>E-Mail:</span> <a href="mailto:${data.email}">${data.email}</a>`;
+    if (data.emailWork) document.getElementById('email-work').innerHTML = `<span>Office:</span> <a href="mailto:${data.emailWork}">${data.emailWork}</a>`;
+    if (data.adr) document.getElementById('adr').innerHTML = `<span>Adresse:</span> ${data.adr}`;
+  }).catch(err => console.error('Vcard.vcf nicht geladen:', err));
+</script>
+</body>
+</html>

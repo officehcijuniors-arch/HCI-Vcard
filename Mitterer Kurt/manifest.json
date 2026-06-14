@@ -1,0 +1,12 @@
+{
+  "name": "Kurt Mitterer – HC TIWAG Innsbruck",
+  "short_name": "Visitenkarte",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f7f5f0",
+  "theme_color": "#003789",
+  "icons": [
+    { "src": "../HAI.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "../HAI.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
