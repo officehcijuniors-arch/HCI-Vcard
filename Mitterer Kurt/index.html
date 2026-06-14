@@ -15,9 +15,9 @@
 
 <style>
   :root{
-    --ink:#003789;
+    --ink:#003789;      /* CI BLAU */
     --paper:#f7f5f0;
-    --accent:#d42323;
+    --accent:#d42323;   /* CI ROT */
     --line:#d8d3c7;
     --muted:#6b7280;
   }
@@ -85,7 +85,7 @@
     margin:0 auto 16px;
     display:block;
     border:2px solid var(--ink);
-    background:#eee;
+    background:#fff;
   }
 
   h1{
@@ -132,7 +132,7 @@
     color:var(--muted);
     margin-bottom:14px;
     letter-spacing:0.04em;
-    text-transform:uppercase;
+    text-transform-uppercase;
   }
 
   #qrcode{
@@ -249,6 +249,7 @@
 
       if (data.fn) document.getElementById('name').textContent = data.fn;
       if (data.title) document.getElementById('role').textContent = data.title;
+
       if (data.org) document.getElementById('org').textContent = data.org;
 
       if (data.telCell) document.getElementById('tel-cell').innerHTML =
