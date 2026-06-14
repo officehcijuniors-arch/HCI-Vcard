@@ -22,11 +22,7 @@
   --bg: #ffffff;
   --line: rgba(11,15,25,0.08);
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   font-family: "Areno Serif", Georgia, 'Times New Roman', serif;
@@ -38,9 +34,7 @@ body {
 /* NAV */
 nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 14px 5%;
   display: flex;
@@ -51,10 +45,7 @@ nav {
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
-nav img {
-  height: 34px;
-  display: block;
-}
+nav img { height: 34px; display: block; }
 nav .tag {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 12px;
@@ -72,12 +63,9 @@ nav .tag {
   justify-content: center;
   text-align: center;
   padding: 120px 24px 40px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0,55,137,0.06), transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(0,55,137,0.06), transparent 60%);
 }
-.hero-inner {
-  max-width: 720px;
-}
+.hero-inner { max-width: 720px; }
 .hero img {
   width: 110px;
   margin-bottom: 28px;
@@ -110,7 +98,7 @@ h1 {
 /* SECTION */
 .section {
   padding: 40px 5% 90px;
-  max-width: 1000px;
+  max-width: 600px;
   margin: auto;
 }
 .section h2 {
@@ -121,15 +109,14 @@ h1 {
 .section p.lead {
   color: var(--muted);
   font-size: clamp(14px, 2.2vw, 17px);
-  max-width: 640px;
   line-height: 1.7;
   margin-bottom: 40px;
 }
 
-/* CARDS */
+/* CARDS – immer untereinander */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 .card {
@@ -151,17 +138,10 @@ h1 {
 }
 .card .avatar {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--blue), var(--red));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
   overflow: hidden;
 }
 .card .avatar img {
@@ -170,14 +150,8 @@ h1 {
   object-fit: cover;
   display: block;
 }
-.card .info {
-  min-width: 0;
-}
-.card h3 {
-  font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 4px;
-}
+.card .info { min-width: 0; }
+.card h3 { font-size: 18px; font-weight: 400; margin-bottom: 4px; }
 .card .role {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--red);
@@ -209,25 +183,15 @@ footer .footer-inner {
   text-align: center;
   gap: 14px;
 }
-footer img {
-  height: 40px;
-  margin-bottom: 6px;
-}
-footer .org {
-  font-size: 16px;
-  color: var(--blue);
-  font-weight: 400;
-}
+footer img { height: 40px; margin-bottom: 6px; }
+footer .org { font-size: 16px; color: var(--blue); font-weight: 400; }
 footer .addr {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 13px;
   color: var(--muted);
   line-height: 1.8;
 }
-footer .addr a {
-  color: var(--muted);
-  text-decoration: none;
-}
+footer .addr a { color: var(--muted); text-decoration: none; }
 footer .addr a:hover { color: var(--blue); }
 footer .copy {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -239,8 +203,8 @@ footer .copy {
 
 @media (max-width: 480px) {
   nav { padding: 12px 20px; }
-  .hero { padding: 100px 20px 50px; }
-  .section { padding: 50px 20px 70px; }
+  .hero { padding: 100px 20px 40px; }
+  .section { padding: 40px 20px 60px; }
 }
 </style>
 </head>
@@ -269,22 +233,25 @@ footer .copy {
     Zuständigkeiten innerhalb der Nachwuchsorganisation – Kontaktdaten direkt abrufbar.
   </p>
   <div class="grid">
-    <a class="card" href="Kurt Mitterer/">
-      <div class="avatar"><img src="Kurt Mitterer/Profilbild.png" alt="Kurt Mitterer"></div>
+
+    <a class="card" href="Kurt%20Mitterer/">
+      <div class="avatar"><img src="Kurt%20Mitterer/Profilbild.png" alt="Kurt Mitterer"></div>
       <div class="info">
         <h3>Kurt Mitterer</h3>
         <div class="role">Vorstand Nachwuchs</div>
       </div>
       <div class="arrow">→</div>
     </a>
-    <a class="card" href="Singer Mirjam/">
-      <div class="avatar"><img src="Singer Mirjam/Profilbild.png" alt="Mirjam Singer"></div>
+
+    <a class="card" href="Singer%20Mirjam/">
+      <div class="avatar"><img src="Singer%20Mirjam/Profilbild.png" alt="Mirjam Singer"></div>
       <div class="info">
         <h3>Mirjam Singer</h3>
         <div class="role">Finanzen &amp; Teamausstattung</div>
       </div>
       <div class="arrow">→</div>
     </a>
+
   </div>
 </section>
 
