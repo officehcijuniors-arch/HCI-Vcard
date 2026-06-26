@@ -1,11 +1,11 @@
 BEGIN:VCARD
 VERSION:3.0
-FN:Mirjam Singer
-N:Singer;Mirjam;;;
+FN:Lukas Schnaller
+N:Schnaller;Lukas;;;
 ORG:HC TIWAG Innsbruck
-TITLE:Finanzen & Teamausstattung
-TEL;TYPE=CELL:+436769411816
-EMAIL:mirjam.singer@hcinnsbruck.at
+TITLE:Veranstaltungen & Administration
+TEL;TYPE=CELL:+4369911523740
+EMAIL:lukas.schnaller@hcinnsbruck.at
 TEL;TYPE=WORK:+435122515210
 EMAIL;TYPE=WORK:office@hcinnsbruck.at
 ADR;TYPE=WORK:;;Stadionstraße 1;Innsbruck;;6020;Austria
