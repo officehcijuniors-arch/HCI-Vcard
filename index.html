@@ -121,7 +121,7 @@ h1 {
 }
 .grid-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 @media (max-width: 480px) {
@@ -240,29 +240,34 @@ footer .copy {
   <p class="lead">
     Zuständigkeiten innerhalb der Nachwuchsorganisation – Kontaktdaten direkt abrufbar.
   </p>
+
   <div class="grid">
 
-    <a class="card" href="Mitterer%20Kurt/">
-      <div class="avatar"><img src="Mitterer%20Kurt/Profilbild.png" alt="Kurt Mitterer"></div>
-      <div class="info">
-        <h3>Kurt Mitterer</h3>
-        <div class="role">Vorstand</div>
-      </div>
-      <div class="arrow">→</div>
-    </a>
+    <div class="grid-row">
+      <div></div>
 
-<a class="card" href="Schnaller%20Lukas/">
-        <div class="avatar"><img src="Schnaller%20Lukas/Profilbild.png" alt="Schnaller Lukas"></div>
+      <a class="card" href="Mitterer%20Kurt/">
+        <div class="avatar"><img src="Mitterer%20Kurt/Profilbild.png" alt="Kurt Mitterer"></div>
         <div class="info">
-          <h3>Schnaller Lukas</h3>
-          <div class="role">Veranstaltungen & Administration</div>
+          <h3>Kurt Mitterer</h3>
+          <div class="role">Vorstand</div>
         </div>
         <div class="arrow">→</div>
       </a>
+
+      <div></div>
     </div>
-</section>
 
     <div class="grid-row">
+      <a class="card" href="Draxl%20Philipp/">
+        <div class="avatar"><img src="Draxl%20Philipp/Profilbild.png" alt="Philipp Draxl"></div>
+        <div class="info">
+          <h3>Philipp Draxl</h3>
+          <div class="role">Nachwuchsleiter</div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+
       <a class="card" href="Singer%20Mirjam/">
         <div class="avatar"><img src="Singer%20Mirjam/Profilbild.png" alt="Mirjam Singer"></div>
         <div class="info">
@@ -272,15 +277,17 @@ footer .copy {
         <div class="arrow">→</div>
       </a>
 
-      <a class="card" href="Draxl%20Philipp/">
-        <div class="avatar"><img src="Draxl%20Philipp/Profilbild.png" alt="Philipp Draxl"></div>
+      <a class="card" href="Schnaller%20Lukas/">
+        <div class="avatar"><img src="Schnaller%20Lukas/Profilbild.png" alt="Schnaller Lukas"></div>
         <div class="info">
-          <h3>Philipp Draxl</h3>
-          <div class="role">Nachwuchsleiter</div>
+          <h3>Schnaller Lukas</h3>
+          <div class="role">Veranstaltungen &amp; Administration</div>
         </div>
         <div class="arrow">→</div>
       </a>
     </div>
+
+  </div>
 </section>
 
 <footer>
