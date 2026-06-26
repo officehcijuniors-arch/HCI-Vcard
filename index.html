@@ -113,11 +113,19 @@ h1 {
   margin-bottom: 40px;
 }
 
-/* CARDS – immer untereinander */
+/* CARDS */
 .grid {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 480px) {
+  .grid-row { grid-template-columns: 1fr; }
 }
 .card {
   display: flex;
@@ -238,21 +246,30 @@ footer .copy {
       <div class="avatar"><img src="Mitterer%20Kurt/Profilbild.png" alt="Kurt Mitterer"></div>
       <div class="info">
         <h3>Kurt Mitterer</h3>
-        <div class="role">Vorstand</div>
+        <div class="role">Vorstand Nachwuchs</div>
       </div>
       <div class="arrow">→</div>
     </a>
 
-    <a class="card" href="Singer%20Mirjam/">
-      <div class="avatar"><img src="Singer%20Mirjam/Profilbild.png" alt="Mirjam Singer"></div>
-      <div class="info">
-        <h3>Mirjam Singer</h3>
-        <div class="role">Finanzen &amp; Teamausstattung</div>
-      </div>
-      <div class="arrow">→</div>
-    </a>
+    <div class="grid-row">
+      <a class="card" href="Singer%20Mirjam/">
+        <div class="avatar"><img src="Singer%20Mirjam/Profilbild.png" alt="Mirjam Singer"></div>
+        <div class="info">
+          <h3>Mirjam Singer</h3>
+          <div class="role">Finanzen &amp; Teamausstattung</div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
 
-  </div>
+      <a class="card" href="Draxl%20Philipp/">
+        <div class="avatar"><img src="Draxl%20Philipp/Profilbild.png" alt="Philipp Draxl"></div>
+        <div class="info">
+          <h3>Philipp Draxl</h3>
+          <div class="role">Nachwuchsleiter</div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+    </div>
 </section>
 
 <footer>
