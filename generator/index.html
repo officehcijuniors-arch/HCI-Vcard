@@ -62,11 +62,18 @@
       <section class="panel output-panel">
         <div class="section-title"><span>04</span><div><h3>GitHub-Paket</h3><p>Der Ordnername entspricht der späteren Adresse.</p></div></div>
         <label>Kontaktordner *<input id="folderName" required placeholder="Nachname Vorname"></label>
+        <label class="startpage-label">Bestehende Startseite (index.html)
+          <textarea id="startPageCode" rows="10" spellcheck="false" placeholder="Hier den gesamten Code deiner bestehenden Startseite einfügen. Der neue Kontakt wird automatisch ergänzt."></textarea>
+        </label>
         <div class="actions">
           <button class="primary" type="submit">Kontakt als ZIP herunterladen</button>
           <button class="secondary" id="copySnippet" type="button" disabled>Startseiten-Eintrag kopieren</button>
+          <button class="secondary" id="copyComplete" type="button" disabled>Vollständige index.html kopieren</button>
         </div>
         <p id="status" class="status" role="status" aria-live="polite"></p>
+        <label id="completeOutputWrap" class="startpage-label output-code" hidden>Fertige Startseite
+          <textarea id="completeOutput" rows="12" readonly></textarea>
+        </label>
       </section>
     </form>
   </main>

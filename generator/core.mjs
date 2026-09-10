@@ -24,7 +24,21 @@ export function makeVCard(d,jpegBase64){
 
 export function makeManifest(d){return JSON.stringify({name:`Visitenkarte ${d.firstName} ${d.lastName}`,short_name:`${d.firstName} ${d.lastName}`.slice(0,30),start_url:"./",display:"standalone",background_color:"#f7f5f0",theme_color:"#003789",icons:[{src:"../HAI.png",sizes:"400x400",type:"image/png",purpose:"any maskable"}]},null,2)}
 
-export function makeSnippet(d){const folder=folderUrl(d.folderName),name=html(`${d.firstName} ${d.lastName}`),title=html(d.title);return `<a class="card" href="${folder}/">\n  <img class="photo" src="${folder}/Profilbild.png" alt="${name}">\n  <h2>${name}</h2>\n  <p>${title}</p>\n</a>`}
+export function makeSnippet(d){const folder=folderUrl(d.folderName),name=html(`${d.firstName} ${d.lastName}`),title=html(d.title);return `<a class="card" href="${folder}/">\n  <div class="avatar">\n    <img src="${folder}/Profilbild.png" alt="${name}">\n  </div>\n\n  <div class="info">\n    <h3>${name}</h3>\n    <div class="role">${title}</div>\n  </div>\n\n  <div class="arrow">→</div>\n</a>`}
+
+export function mergeStartPage(source,d){
+  if(!source.trim()) return "";
+  if(typeof DOMParser==="undefined") throw new Error("DOMParser ist nicht verfügbar.");
+  const doc=new DOMParser().parseFromString(source,"text/html"),grid=doc.querySelector(".grid");
+  if(!grid) throw new Error("Im Startseitencode wurde kein Element mit class=\"grid\" gefunden.");
+  const href=`${folderUrl(d.folderName)}/`;
+  if([...doc.querySelectorAll("a.card")].some(a=>a.getAttribute("href")===href)) throw new Error("Dieser Kontakt ist bereits auf der Startseite vorhanden.");
+  const holder=doc.createElement("template");holder.innerHTML=makeSnippet(d).trim();
+  const rows=[...grid.querySelectorAll(":scope > .grid-row")];let row=rows.at(-1);
+  if(!row||row.querySelectorAll(":scope > a.card").length>=3){row=doc.createElement("div");row.className="grid-row";grid.append("\n\n    ",row,"\n")}
+  row.append("\n\n      ",holder.content.firstElementChild,"\n");
+  return "<!doctype html>\n"+doc.documentElement.outerHTML;
+}
 
 export function makeContactHtml(d){
  const name=html(`${d.firstName} ${d.lastName}`), row=(label,value,href="")=>value?`<div><span>${label}:</span> ${href?`<a href="${html(href)}">${html(value)}</a>`:html(value)}</div>`:"";
