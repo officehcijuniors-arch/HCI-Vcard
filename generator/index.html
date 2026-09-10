@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HCI VCard Generator</title>
+  <meta name="theme-color" content="#003789">
+  <link rel="icon" type="image/png" href="HAI.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <img src="HAI.png" alt="HC TIWAG Innsbruck">
+    <div><span>HC TIWAG Innsbruck</span><h1>VCard Generator</h1></div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">Kontaktverwaltung</p>
+      <h2>Neue digitale Visitenkarte erstellen</h2>
+      <p>Kontaktdaten eingeben, Foto auswählen und das fertige GitHub-Paket herunterladen. Alle Daten bleiben in diesem Browser.</p>
+    </section>
+
+    <form id="generator-form">
+      <section class="panel">
+        <div class="section-title"><span>01</span><div><h3>Person</h3><p>Die mit * markierten Angaben werden benötigt.</p></div></div>
+        <div class="grid two">
+          <label>Vorname *<input id="firstName" autocomplete="given-name" required></label>
+          <label>Nachname *<input id="lastName" autocomplete="family-name" required></label>
+          <label class="wide">Funktion / Position *<input id="title" required placeholder="z. B. Marketing"></label>
+          <label class="wide">Organisation<input id="organization" value="HC TIWAG Innsbruck"></label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><span>02</span><div><h3>Kontaktdaten</h3><p>Nicht benötigte Felder können leer bleiben.</p></div></div>
+        <div class="grid two">
+          <label>Mobiltelefon<input id="cell" type="tel" placeholder="+43 676 ..."></label>
+          <label>Bürotelefon<input id="workPhone" type="tel" placeholder="+43 512 ..."></label>
+          <label>E-Mail<input id="email" type="email"></label>
+          <label>Office-E-Mail<input id="workEmail" type="email"></label>
+          <label class="wide">Straße<input id="street" value="Stadionstraße 1"></label>
+          <label>PLZ<input id="postalCode" value="6020"></label>
+          <label>Ort<input id="city" value="Innsbruck"></label>
+          <label class="wide">Land<input id="country" value="Austria"></label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><span>03</span><div><h3>Profilfoto</h3><p>Das Bild wird automatisch quadratisch zugeschnitten.</p></div></div>
+        <div class="photo-editor">
+          <div class="preview"><canvas id="preview" width="600" height="600" aria-label="Vorschau des Profilfotos"></canvas></div>
+          <div class="photo-controls">
+            <label class="upload">Foto auswählen *<input id="photo" type="file" accept="image/jpeg,image/png,image/webp" required></label>
+            <label>Vergrößerung <output id="zoomValue">100 %</output><input id="zoom" type="range" min="100" max="220" value="100"></label>
+            <label>Vertikale Position <output id="positionValue">25 %</output><input id="position" type="range" min="0" max="100" value="25"></label>
+            <button class="secondary" id="resetPhoto" type="button">Bildposition zurücksetzen</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel output-panel">
+        <div class="section-title"><span>04</span><div><h3>GitHub-Paket</h3><p>Der Ordnername entspricht der späteren Adresse.</p></div></div>
+        <label>Kontaktordner *<input id="folderName" required placeholder="Nachname Vorname"></label>
+        <div class="actions">
+          <button class="primary" type="submit">Kontakt als ZIP herunterladen</button>
+          <button class="secondary" id="copySnippet" type="button" disabled>Startseiten-Eintrag kopieren</button>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+    </form>
+  </main>
+
+  <footer>HC TIWAG Innsbruck · Digitale Visitenkarten</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
