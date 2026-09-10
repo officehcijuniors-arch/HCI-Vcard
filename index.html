@@ -11,6 +11,7 @@
 <meta name="apple-mobile-web-app-title" content="Nachwuchs">
 <meta name="theme-color" content="#003789">
 <link rel="manifest" href="manifest.json">
+
 <style>
 @font-face {
   font-family: "Areno Serif";
@@ -20,6 +21,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 :root {
   --blue: #003789;
   --red: #d42323;
@@ -28,8 +30,11 @@
   --bg: #ffffff;
   --line: rgba(11,15,25,0.08);
 }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 html { scroll-behavior: smooth; }
+
 body {
   font-family: "Areno Serif", Georgia, 'Times New Roman', serif;
   background: var(--bg);
@@ -51,7 +56,12 @@ nav {
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
-nav img { height: 34px; display: block; }
+
+nav img {
+  height: 34px;
+  display: block;
+}
+
 nav .tag {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 12px;
@@ -69,14 +79,23 @@ nav .tag {
   justify-content: center;
   text-align: center;
   padding: 120px 24px 40px;
-  background: radial-gradient(circle at 50% 0%, rgba(0,55,137,0.06), transparent 60%);
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(0,55,137,0.06),
+    transparent 60%
+  );
 }
-.hero-inner { max-width: 720px; }
+
+.hero-inner {
+  max-width: 720px;
+}
+
 .hero img {
   width: 110px;
   margin-bottom: 28px;
   filter: drop-shadow(0 16px 32px rgba(0,55,137,0.18));
 }
+
 .hero .eyebrow {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 13px;
@@ -86,6 +105,7 @@ nav .tag {
   font-weight: 700;
   margin-bottom: 14px;
 }
+
 h1 {
   font-size: clamp(34px, 7vw, 60px);
   line-height: 1.1;
@@ -93,6 +113,7 @@ h1 {
   margin-bottom: 18px;
   color: var(--blue);
 }
+
 .hero p {
   font-size: clamp(15px, 2.4vw, 19px);
   color: var(--muted);
@@ -107,11 +128,13 @@ h1 {
   max-width: 1000px;
   margin: auto;
 }
+
 .section h2 {
   font-size: clamp(26px, 5vw, 36px);
   margin-bottom: 12px;
   color: var(--blue);
 }
+
 .section p.lead {
   color: var(--muted);
   font-size: clamp(14px, 2.2vw, 17px);
@@ -125,16 +148,24 @@ h1 {
   flex-direction: column;
   gap: 16px;
 }
+
 .grid-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: stretch;
 }
+
 @media (max-width: 760px) {
-  .grid-row { grid-template-columns: 1fr; }
-  .grid-row .empty-cell { display: none; }
+  .grid-row {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-row .empty-cell {
+    display: none;
+  }
 }
+
 .card {
   display: flex;
   align-items: center;
@@ -144,17 +175,23 @@ h1 {
   border-radius: 14px;
   border: 1px solid var(--line);
   background: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
   text-decoration: none;
   color: inherit;
   width: 100%;
   min-width: 0;
 }
-.card:hover, .card:active {
+
+.card:hover,
+.card:active {
   transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(0,55,137,0.10);
   border-color: rgba(0,55,137,0.18);
 }
+
 .card .avatar {
   flex-shrink: 0;
   width: 52px;
@@ -163,22 +200,27 @@ h1 {
   background: linear-gradient(135deg, var(--blue), var(--red));
   overflow: hidden;
 }
+
 .card .avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 25%;
   display: block;
 }
+
 .card .info {
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
 .card h3 {
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 4px;
   line-height: 1.2;
 }
+
 .card .role {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--red);
@@ -188,6 +230,7 @@ h1 {
   text-transform: uppercase;
   font-weight: 600;
 }
+
 .card .arrow {
   margin-left: auto;
   color: var(--blue);
@@ -202,6 +245,7 @@ footer {
   background: #fafbfd;
   padding: 48px 5% 36px;
 }
+
 footer .footer-inner {
   max-width: 1000px;
   margin: 0 auto;
@@ -211,16 +255,34 @@ footer .footer-inner {
   text-align: center;
   gap: 14px;
 }
-footer img { height: 40px; margin-bottom: 6px; }
-footer .org { font-size: 16px; color: var(--blue); font-weight: 400; }
+
+footer img {
+  height: 40px;
+  margin-bottom: 6px;
+}
+
+footer .org {
+  font-size: 16px;
+  color: var(--blue);
+  font-weight: 400;
+}
+
 footer .addr {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 13px;
   color: var(--muted);
   line-height: 1.8;
 }
-footer .addr a { color: var(--muted); text-decoration: none; }
-footer .addr a:hover { color: var(--blue); }
+
+footer .addr a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+footer .addr a:hover {
+  color: var(--blue);
+}
+
 footer .copy {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 12px;
@@ -230,12 +292,21 @@ footer .copy {
 }
 
 @media (max-width: 480px) {
-  nav { padding: 12px 20px; }
-  .hero { padding: 100px 20px 40px; }
-  .section { padding: 40px 20px 60px; }
+  nav {
+    padding: 12px 20px;
+  }
+
+  .hero {
+    padding: 100px 20px 40px;
+  }
+
+  .section {
+    padding: 40px 20px 60px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -257,6 +328,7 @@ footer .copy {
 
 <section class="section" id="team">
   <h2>Verantwortlichkeiten</h2>
+
   <p class="lead">
     Zuständigkeiten innerhalb der Nachwuchsorganisation – Kontaktdaten direkt abrufbar.
   </p>
@@ -267,11 +339,15 @@ footer .copy {
       <div class="empty-cell"></div>
 
       <a class="card" href="Mitterer%20Kurt/">
-        <div class="avatar"><img src="Mitterer%20Kurt/Profilbild.png" alt="Kurt Mitterer"></div>
+        <div class="avatar">
+          <img src="Mitterer%20Kurt/Profilbild.png" alt="Kurt Mitterer">
+        </div>
+
         <div class="info">
           <h3>Kurt Mitterer</h3>
           <div class="role">Vorstand</div>
         </div>
+
         <div class="arrow">→</div>
       </a>
 
@@ -279,32 +355,46 @@ footer .copy {
     </div>
 
     <div class="grid-row">
+
       <a class="card" href="Draxl%20Philipp/">
-        <div class="avatar"><img src="Draxl%20Philipp/Profilbild.png" alt="Philipp Draxl"></div>
+        <div class="avatar">
+          <img src="Draxl%20Philipp/Profilbild.png" alt="Philipp Draxl">
+        </div>
+
         <div class="info">
           <h3>Philipp Draxl</h3>
           <div class="role">Nachwuchsleiter</div>
         </div>
+
         <div class="arrow">→</div>
       </a>
 
       <a class="card" href="Singer%20Mirjam/">
-        <div class="avatar"><img src="Singer%20Mirjam/Profilbild.png" alt="Mirjam Singer"></div>
+        <div class="avatar">
+          <img src="Singer%20Mirjam/Profilbild.png" alt="Mirjam Singer">
+        </div>
+
         <div class="info">
           <h3>Mirjam Singer</h3>
           <div class="role">Finanzen &amp; Teamausstattung</div>
         </div>
+
         <div class="arrow">→</div>
       </a>
 
       <a class="card" href="Schnaller%20Lukas/">
-        <div class="avatar"><img src="Schnaller%20Lukas/Profilbild.png" alt="Schnaller Lukas"></div>
+        <div class="avatar">
+          <img src="Schnaller%20Lukas/Profilbild.png" alt="Schnaller Lukas">
+        </div>
+
         <div class="info">
           <h3>Schnaller Lukas</h3>
           <div class="role">Veranstaltungen &amp; Administration</div>
         </div>
+
         <div class="arrow">→</div>
       </a>
+
     </div>
 
   </div>
@@ -313,14 +403,21 @@ footer .copy {
 <footer>
   <div class="footer-inner">
     <img src="HAI.png" alt="HC TIWAG Innsbruck Logo">
-    <div class="org">HC TIWAG Innsbruck</div>
+
+    <div class="org">
+      HC TIWAG Innsbruck
+    </div>
+
     <div class="addr">
       Stadionstraße 1, 6020 Innsbruck<br>
       Tel.: <a href="tel:+435122515210">+43 (512) 251 521</a> ·
       Fax: +43 (512) 257 496<br>
       <a href="mailto:office@hcinnsbruck.at">office@hcinnsbruck.at</a>
     </div>
-    <div class="copy">© HC TIWAG Innsbruck · Nachwuchsorganisation</div>
+
+    <div class="copy">
+      © HC TIWAG Innsbruck · Nachwuchsorganisation
+    </div>
   </div>
 </footer>
 
